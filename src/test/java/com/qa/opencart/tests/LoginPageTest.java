@@ -25,10 +25,6 @@ public class LoginPageTest extends BaseTest {
         Assert.assertTrue(loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password")));
     }
 
-    @Test(priority = 4)
-    public void appLoginTest1() throws InterruptedException {
-        Assert.assertTrue(loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password")));
-    }
 
 
 
