@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Open cart Test Regression PW Suite" thread-count="2" parallel="tests">
+
+    <test name="Open cart Home Page Test">
+        <classes>
+            <class name="com.qa.opencart.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Open cart Login Page Test">
+        <classes>
+            <class name="com.qa.opencart.tests.LoginPageTest"/>
+        </classes>
+    </test>
+
+
+   <!-- <listeners>
+        <listener class-name="gracenote.tests.TestListener"/>
+    </listeners>-->
+
+</suite>
