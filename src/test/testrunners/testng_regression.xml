@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Open cart Test Regression PW Suite" thread-count="2" parallel="tests">
+<suite name="Open cart Test Regression PW Suite" >  <!--thread-count="2" parallel="tests"-->
+
+    <listeners>
+        <listener class-name="com.qa.opencart.listeners.ExtentsReportListener1234"/>
+    </listeners>
 
     <test name="Open cart Home Page Test">
         <classes>
@@ -15,8 +19,8 @@
     </test>
 
 
-   <!-- <listeners>
-        <listener class-name="gracenote.tests.TestListener"/>
-    </listeners>-->
+    <!-- <listeners>
+         <listener class-name="gracenote.tests.TestListener"/>
+     </listeners>-->
 
 </suite>

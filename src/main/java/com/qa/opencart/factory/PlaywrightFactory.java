@@ -5,6 +5,8 @@ import com.microsoft.playwright.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Properties;
 
 public class PlaywrightFactory {
@@ -12,8 +14,31 @@ public class PlaywrightFactory {
     Playwright playwright;
     Browser browser;
     BrowserContext browserContext;
-    Page page;
+    static Page page;
     Properties prop;
+
+    public static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
+    public static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
+    public static ThreadLocal<Page> tlPage = new ThreadLocal<>();
+    public static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
+
+    public static Page getPage() {
+        System.out.println("getPage return = "+tlPage.get());
+        return tlPage.get();
+    }
+
+    public static Playwright getPlaywright() {
+        return tlPlaywright.get();
+    }
+
+    public static Browser getBrowser() {
+        return tlBrowser.get();
+    }
+
+    public static BrowserContext getBrowserContext() {
+        return tlBrowserContext.get();
+    }
+
 
     public Page initBroser(Properties prop) {
 
@@ -61,6 +86,17 @@ public class PlaywrightFactory {
             e.printStackTrace();
         }
         return prop;
+    }
+
+    public static String takeScreenshot() {
+        String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
+        //  getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+        return path;
+
+       /* byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+        String base64Path = Base64.getEncoder().encodeToString(buffer);
+        return base64Path;*/
     }
 
 
