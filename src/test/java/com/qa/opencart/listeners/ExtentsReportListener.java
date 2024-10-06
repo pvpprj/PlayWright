@@ -20,7 +20,7 @@ import static com.qa.opencart.factory.PlaywrightFactory.takeScreenshot;
 
 public class ExtentsReportListener implements ITestListener {
 
-    private static final String OUTPUT_FOLDER = "./SBI/";
+    private static final String OUTPUT_FOLDER = "./build/";
     private static final String FILE_NAME = "TestExecutionReport.html";
 
     private static ExtentReports extent = init();
@@ -39,16 +39,12 @@ public class ExtentsReportListener implements ITestListener {
 
         extentReports = new ExtentReports();
         ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
-        reporter.config().setReportName("Open Cart Automation Test Results");
+        reporter.config().setReportName("Open cart Automation Test Result ");
         extentReports.attachReporter(reporter);
-        extentReports.setSystemInfo("System", "MAC");
-        extentReports.setSystemInfo("Author", "Naveen AutomationLabs");
+        extentReports.setSystemInfo("System", "WINDOW");
+        extentReports.setSystemInfo("Author", "Rahul Tests");
         extentReports.setSystemInfo("Build#", "1.1");
-        extentReports.setSystemInfo("Team", "OMS");
-        extentReports.setSystemInfo("Customer Name", "NAL");
-
-        //extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
-
+        extentReports.setSystemInfo("Team", "India");
         return extentReports;
     }
 
@@ -88,7 +84,7 @@ splitByCharacterTypeCamelCase(methodName), StringUtils.SPACE));
     public synchronized void onTestSuccess(ITestResult result) {
         System.out.println((result.getMethod().getMethodName() + " Passed!"));
         test.get().pass("Test Passed");
-        test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+//        test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
         test.get().getModel().setStartTime(getTime(result.getStartMillis()));
     }
 
